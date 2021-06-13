@@ -5,7 +5,7 @@ const TicketSchema = new Schema({
 
     title: {
         type:String,
-        required : true
+        // required : true
         
     },
     desc : {
