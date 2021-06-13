@@ -8,25 +8,25 @@
 </head>
 
 <body>
-	<h1>To Upload Image on mongoDB</h1>
+	<h1>Create a new ticket</h1>
 	<hr>
 	<div>
 		<form action="/" method="POST" enctype="multipart/form-data">
 			<div>
-				<label for="title">New ticket</label>
-				<input type="text" id="title" placeholder="Name"
-					value="" title="title" required>
+			<strong><label for="title">New ticket: </label></strong>	
+				<input type="text" id="title" placeholder="New ticket request"
+					 title="title" >
 			</div>
 			<div>
-				<label for="desc">Description</label>
-				<textarea id="desc" name="pesc" value="" rows="2"
-						placeholder="Description" required>
+			<strong><label for="desc">Description: </label></strong>	
+				<textarea id="desc" name="desc" rows="1"
+						placeholder="Description">
 				</textarea>
 			</div>
 			<div>
-				<label for="image">Upload Image</label>
+			<strong><label for="image">Add photo: </label></strong>	
 				<input type="file" id="image"
-					name="image" value="" required>
+					name="image">
 			</div>
 			<div>
 				<button type="submit">Submit</button>
@@ -36,7 +36,7 @@
 
 	<hr>
 
-	<h1>Uploaded Images</h1>
+	<h1>Ticket Listing</h1>
 	<div>
 		<% items.forEach(function(image) { %>
 		<div>
