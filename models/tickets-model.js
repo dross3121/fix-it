@@ -6,6 +6,7 @@ const TicketSchema = new Schema({
     title: {
         type:String,
         required : true
+        
     },
     desc : {
         type: String
@@ -16,6 +17,7 @@ const TicketSchema = new Schema({
     img : { 
         data: Buffer, 
         contentType: String
+        
      },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
