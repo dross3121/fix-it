@@ -14,9 +14,14 @@
 		<form action="/" method="POST" enctype="multipart/form-data">
 			<div>
 			<strong><label for="title">New ticket: </label></strong>	
-				<input type="text" id="title" placeholder="New ticket request"
+				<input type="text" id="title" name="title" placeholder="New ticket request"
 					 title="title" >
 			</div>
+			<div>
+				<strong><label for="offer">Payment: </label></strong>	
+					<input type="text" id="offer" name="offer" placeholder="Payment offer"
+						  >
+				</div>
 			<div>
 			<strong><label for="desc">Description: </label></strong>	
 				<textarea id="desc" name="desc" rows="1"
@@ -44,11 +49,9 @@
 				<img src="data:image/<%=image.img.contentType%>;base64,
 					<%=image.img.data.toString('base64')%>">
 				<div>
-					<h5><%= image.name %></h5>
-					
-
-
-<p><%= image.desc %></p>
+					<h5><%= image.title %></h5>
+					<p><%= image.desc %></p>
+					<p><%= image.offer %></p>
 
 
 

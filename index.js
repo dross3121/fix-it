@@ -44,8 +44,9 @@ app.get('/', (req, res) => {
 // add /new route for this form to create new tickets 
 app.post('/', upload.single('image'), (req, res, next) => {
     var obj = {
-        name: req.body.name,
+        title: req.body.title,
         desc: req.body.desc,
+        offer: req.body.offer,
         img: {
             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
             contentType: 'image/png'

@@ -10,7 +10,7 @@ const TicketSchema = new Schema({
     desc : {
         type: String
     },
-    price : {
+    offer : {
         type: Number
     },
     img : { 
