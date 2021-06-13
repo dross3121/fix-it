@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
     ticketmodel.find({}, (err, items) => {
         if (err) {
             console.log(err);
-            res.status(500).send('An error occurred', err);
+            res.status(status).send(body);
         }
         else {
             res.render('show', { items: items });
