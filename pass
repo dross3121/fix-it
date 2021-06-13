@@ -1,7 +1,0 @@
-admin-user
-lKkteekZdm75SJ1v
-
-
-heroku config:set DB_URL=mongodb+srv://admin-user:lKkteekZdm75SJ1v
-@fix-it-cluster.mxakk.mongodb.net/admin-user
-?retryWrites=true&w=majority
