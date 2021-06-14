@@ -8,10 +8,13 @@ const UserSchema = new Schema({
         required : true
     },
     phone : {
-        type: Number
+        type: Number,
+        required : true
+
     },
     email : {
-        type: String
+        type: String,
+        required : true
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,

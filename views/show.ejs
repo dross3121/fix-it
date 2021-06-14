@@ -1,61 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Image Uploading</title>
+	<title>ticket listing</title>
 </head>
-
 <body>
-	<h1>Create a new ticket</h1>
-	<hr>
+	<h1 style="color: crimson;">Ticket Listing</h1>
 	<div>
-		<form action="/" method="POST" enctype="multipart/form-data">
-			<div>
-			<strong><label for="title">New ticket: </label></strong>	
-				<input type="text" id="title" name="title" placeholder="New ticket request"
-					 title="title" >
-			</div>
-			<div>
-				<strong><label for="offer">Payment: </label></strong>	
-					<input type="text" id="offer" name="offer" placeholder="Payment offer">
-				</div>
-			<div>
-			<strong><label for="desc">Description: </label></strong>	
-				<textarea id="desc" name="desc" rows="1"
-						placeholder="Description">
-				</textarea>
-			</div>
-			<div>
-			<strong><label for="image">Add photo: </label></strong>	
-				<input type="file" id="image"
-					name="image">
-			</div>
-			<div>
-				<button type="submit">Submit</button>
-			</div>
-		</form>
-	</div>
-
-	<hr>
-
-	<h1>Ticket Listing</h1>
-	<div>
-		<% items.forEach(function(ticket) { %>
+		<% tickets.forEach(function(ticket) { %>
 		<div>
 			<div>
-				<h5><%= ticket.title %></h5>
+				<h2>Issue: <%= ticket.title %></h2>
 				<img  src="data:image/<%= ticket.img.contentType %>;base64, 
 					<%= ticket.img.data.toString('base64') %>">
 				<div>
-					<p><%= ticket.desc %></p>
-					<p><%= ticket.offer %></p>
+					<p>Description: <%= ticket.desc %></p>
+					<p>Ticket offer: <%= ticket.offer %></p>
 				</div>
 			</div>
 		</div>
 		<% }) %>
 	</div>
 </body>
-
 </html>
+
