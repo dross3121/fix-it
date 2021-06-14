@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override')
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
@@ -11,14 +12,19 @@ require('dotenv/config');
 // settign render templating as ejs
 app.set('view engine', 'ejs');
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: false }))
+app.use(methodOverride('_method'))
+
+
 
 
 
 
 // [X]show/read route working
-app.get('/tickets', (req, res) => {
+app.get('/tickets/', (req, res) => {
     Tickets.find({})
     .then((tickets) =>{
         res.render('show', {tickets : tickets})
@@ -39,27 +45,28 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // add /new route for this form to create new tickets 
-// app.post('/new', upload.single('image'), (req, res, next) => {
-//     const obj = {
-//         title: req.body.title,
-//         desc: req.body.desc,
-//         offer: req.body.offer,
-//         img: {
-//             data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-//             contentType: 'image/png'
-//         }
-//     }
-//     Tickets.create(obj, (err, item) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             // item.save();
-//             res.redirect('/');
-//         }
-//     });
-// });
+app.get('/tickets/new/', (req,res) =>{
+    res.render('new')
+})
+app.post('/tickets/', upload.single('image'), (req, res, next) => {
+    console.log(req.body)
+    let newTicket = {
+        title: req.body.title,
+        desc: req.body.desc,
+        offer: req.body.offer,
+        img: {
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            contentType: 'image/png'
+        }
+    }
+    Tickets.create(newTicket)
+        .then(ticket => {
+            console.log(ticket)
+        res.redirect('/tickets')
+    });
+});
 
+// []"PUT" update based from id
 
 
 
@@ -73,3 +80,4 @@ app.set("port", process.env.PORT || 8000);
 app.listen(app.get("port"), () => {
   console.log(`✅ PORT: ${app.get("port")} 🌟`);
 });
+

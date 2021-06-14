@@ -11,7 +11,7 @@
 	<h1>Create a new ticket</h1>
 	<hr>
 	<div>
-		<form action="/" method="POST" enctype="multipart/form-data">
+		<form action="/tickets" method="POST" enctype="multipart/form-data">
 			<div>
 			<strong><label for="title">New ticket: </label></strong>	
 				<input type="text" id="title" name="title" placeholder="New ticket request"
@@ -38,24 +38,6 @@
 		</form>
 	</div>
 
-	<hr>
-
-	<h1>Ticket Listing</h1>
-	<div>
-		<% items.forEach(function(ticket) { %>
-		<div>
-			<div>
-				<h5><%= ticket.title %></h5>
-				<img  src="data:image/<%= ticket.img.contentType %>;base64, 
-					<%= ticket.img.data.toString('base64') %>">
-				<div>
-					<p><%= ticket.desc %></p>
-					<p><%= ticket.offer %></p>
-				</div>
-			</div>
-		</div>
-		<% }) %>
-	</div>
 </body>
 
 </html>
