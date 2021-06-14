@@ -1,0 +1,24 @@
+[
+    { 
+        "title" : "Ac Repair",
+        "desc" : "Ac make a loud thumping noise when i turn it on",
+        "offer" : 1000.00
+
+    },
+    { 
+        "title" : "Oven Repair",
+        "desc" : "Oven make a loud thumping noise when i turn it on",
+        "offer" : 1000.00
+
+    },
+    { 
+        "title" : "Ac Repair",
+        "desc" : "Ac make a loud thumping noise when i turn it on",
+        "offer" : 1000.00
+    },
+    { 
+        "title" : "Ac Repair",
+        "desc" : "Ac make a loud thumping noise when i turn it on",
+        "offer" : 1000.00
+    }
+]

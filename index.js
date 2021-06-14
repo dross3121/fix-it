@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
-const ticketmodel = require('./models/tickets-model')
+const Tickets = require('./models/tickets-model')
 require('dotenv/config');
 
 
@@ -31,7 +31,7 @@ const upload = multer({ storage: storage });
 // })
 
 app.get('/', (req, res) => {
-    ticketmodel.find({}, (err, items) => {
+    Tickets.find({}, (err, items) => {
         if (err) {
             console.log(err);
             res.status(status).send(body);
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 });
 // add /new route for this form to create new tickets 
 app.post('/', upload.single('image'), (req, res, next) => {
-    var obj = {
+    const obj = {
         title: req.body.title,
         desc: req.body.desc,
         offer: req.body.offer,
@@ -52,7 +52,7 @@ app.post('/', upload.single('image'), (req, res, next) => {
             contentType: 'image/png'
         }
     }
-    ticketmodel.create(obj, (err, item) => {
+    Tickets.create(obj, (err, item) => {
         if (err) {
             console.log(err);
         }

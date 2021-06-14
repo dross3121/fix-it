@@ -5,17 +5,21 @@ const TicketSchema = new Schema({
 
     title: {
         type: String,
+        required : true
         
     },
     desc : {
-        type: String
+        type: String,
+        required : true
     },
     offer : {
-        type: Number
+        type: Number,
+        required : true
     },
     img : { 
         data: Buffer, 
-        contentType: String
+        contentType: String,
+       
         
      },
     owner: {
