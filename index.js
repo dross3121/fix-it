@@ -27,12 +27,13 @@ app.use(methodOverride('_method'))
 app.get('/tickets/', (req, res) => {
     Tickets.find({})
     .then((tickets) =>{
-        res.render('show', {tickets : tickets})
+        res.render('index', {tickets : tickets})
     })
     .catch(console.error);
 });
 
-// []create/post route 
+
+// [x]create/post route 
 // stroage path for uploaded photos
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -49,7 +50,6 @@ app.get('/tickets/new/', (req,res) =>{
     res.render('new')
 })
 app.post('/tickets/', upload.single('image'), (req, res, next) => {
-    console.log(req.body)
     let newTicket = {
         title: req.body.title,
         desc: req.body.desc,
@@ -60,13 +60,25 @@ app.post('/tickets/', upload.single('image'), (req, res, next) => {
         }
     }
     Tickets.create(newTicket)
-        .then(ticket => {
-            console.log(ticket)
+    .then(ticket => {
+        console.log(ticket)
         res.redirect('/tickets')
     });
 });
 
+// get one ticket by id route
+app.get('/tickets/:id', (req,res) =>{
+    let id = req.params.id
+    console.log(id)
+    Tickets.findById(id)
+    .then((ticket) =>{
+       res.render('show', {ticket : ticket})
+       return ticket
+    })
+
+})
 // []"PUT" update based from id
+// app.put('')
 
 
 
@@ -78,6 +90,6 @@ app.set("port", process.env.PORT || 8000);
 
 // listening on port
 app.listen(app.get("port"), () => {
-  console.log(`✅ PORT: ${app.get("port")} 🌟`);
+    console.log(`✅ PORT: ${app.get("port")} 🌟`);
 });
 
