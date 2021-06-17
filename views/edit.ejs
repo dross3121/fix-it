@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<form action="/tickets/<%= ticket._id %>/?_method=put"  method="POST" enctype="multipart/form-data">
+			<div>
+			<strong><label for="title">Ticket name: </label></strong>	
+				<input type="text" id="title" name="title" placeholder="Ticket name"
+					 title="title" >
+			</div>
+			<div>
+				<strong><label for="offer">Payment offer: </label></strong>	
+					<input type="text" id="offer" name="offer" placeholder="Payment offer">
+				</div>
+			<div>
+			<strong><label for="desc">Update description: </label></strong>	
+				<textarea id="desc" name="desc" rows="1"
+						placeholder="Description">
+				</textarea>
+			</div>
+			<div>
+			<strong><label for="image">Add photo: </label></strong>	
+				<input type="file" id="image"
+					name="image">
+			</div>
+			<form>
+				<button type="submit">Submit</button>
+			</form>
+		</form>
+	</div>
+	<div>
+		<% if (ticket) { %>
+		<div>
+			<div>
+				<h2>Issue: <%= ticket.title %></h2>
+				<img  src="data:image/<%= ticket.img.contentType %>;base64, 
+					<%= ticket.img.data.toString('base64') %>">
+				<div>
+					<p>Description: <%= ticket.desc %></p>
+					<p>Ticket offer: <%= ticket.offer %></p>
+				</div>
+			</div>
+		</div>
+		<% } %>
+	</div>
+	<form action="/tickets">
+		<input type="submit" value="Cancel" />
+	</form>
+</body>
+</html>
+
+
