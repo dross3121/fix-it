@@ -32,6 +32,9 @@
 			<form>
 				<button type="submit">Submit</button>
 			</form>
+			<form action="/tickets/<%= ticket._id %>/?_method=DELETE" method="POST" enctype="multipart/form-data">
+				<input type="submit" value="DELETE" />
+			</form>
 		</form>
 	</div>
 	<div>
@@ -49,7 +52,7 @@
 		</div>
 		<% } %>
 	</div>
-	<form action="/tickets">
+	<form action="/tickets/">
 		<input type="submit" value="Cancel" />
 	</form>
 </body>

@@ -10,17 +10,17 @@
 	<h1 style="color: crimson;">Ticket Listing</h1>
 	<div>
 		<% tickets.forEach(function(ticket) { %>
-		<div>
 			<div>
-				<h2>Issue: <%= ticket.title %></h2>
-				<img  src="data:image/<%= ticket.img.contentType %>;base64, 
-					<%= ticket.img.data.toString('base64') %>">
 				<div>
-					<p>Description: <%= ticket.desc %></p>
-					<p>Ticket offer: <%= ticket.offer %></p>
+					<h2>Issue: <%= ticket.title %></h2>
+					<img  src="data:image/<%= ticket.img.contentType %>;base64, 
+					<%= ticket.img.data.toString('base64') %>">
+					<div>
+						<p>Description: <%= ticket.desc %></p>
+						<p>Ticket offer: <%= ticket.offer %></p>
+					</div>
 				</div>
 			</div>
-		</div>
 		<% }) %>
 	</div>
 </body>
