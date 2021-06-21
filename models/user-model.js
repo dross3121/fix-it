@@ -16,10 +16,6 @@ const UserSchema = new Schema({
         type: String,
         required : true
     },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Tickets",
-    }
 },
 {timestamps : true}
 )
