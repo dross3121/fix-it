@@ -5,6 +5,7 @@ const path = require('path');
 require('dotenv/config');
 const router = express.Router()
 const Tickets = require('../models/tickets-model')
+const User = require('../models/user-model')
 
 
 // stroage path for uploaded photos
