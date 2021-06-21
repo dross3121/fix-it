@@ -5,6 +5,7 @@ const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
 const Tickets = require('./models/tickets-model')
+const User = require('./models/user-model')
 require('dotenv/config');
 
 
@@ -41,12 +42,24 @@ const upload = multer({ storage: storage,
     // [X]show/read route working
 app.get('/tickets/', (req, res) => {
         Tickets.find({})
+        .populate('owner')
         .then((tickets) =>{
             console.log(tickets)
             res.render('index', {tickets : tickets})
         })
         .catch(console.error);
     });
+
+// all users route
+app.get('/tickets/users', (req,res) =>{
+    User.find({})
+    .then((users) =>{
+        res.json(users)
+    })
+
+})
+
+
 // add /new route for this form to create new tickets 
 app.get('/tickets/new/', (req,res) =>{
     res.render('new')
@@ -72,12 +85,23 @@ app.post('/tickets/', upload.single('image'), (req, res, next) => {
 // get one ticket by id route
 app.get('/tickets/:id', (req,res) =>{
     let id = req.params.id
-    console.log(id)
     Tickets.findById(id)
+    .populate('owner')
     .then((ticket) =>{
        res.render('show', {ticket : ticket})
     })
     .catch(console.error);
+})
+
+
+
+// get usr by id route
+app.get('/tickets/users/:id', (req,res) =>{
+    var id = req.params.id
+    User.findOne({_id : id})
+    .then(userId =>{
+        res.json(userId)
+    })
 })
 
 // [x] grab a ticket by id tand render to the PUT to update
@@ -127,7 +151,11 @@ app.delete('/tickets/:id', (req,res) =>{
 })
 
 
-
+app.use((err, req, res, next) => {
+    const statusCode = res.statusCode || 500;
+    const message = err.message || 'Internal Server Error';
+    res.status(statusCode).send(message);
+  });
 
 
 
@@ -140,10 +168,10 @@ app.listen(app.get("port"), () => {
 
 // TODOs
 // [x] finsh put and delete route
+// [X] connect user and tickets in database
 // [] re-factor routes
-// [] connect user and tickets in database
 // [] user login/ authentication
 // [] rendering all of a users tickets based on id
 // [] flash message for when picture is to large
 // [] style.css or bootstrap
-// [] fix heroku 
+// [X] fix heroku 

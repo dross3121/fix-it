@@ -1,13 +1,19 @@
 const ticketData = require('./ticket-seed.json')
 
 const Tickets = require('../models/tickets-model')
+const User = require('../models/user-model')
 
 // Remove any preexisting data
 Tickets.deleteMany({})
-  .then(() => {
+  .then(() => User.deleteMany({}))
+  .then(() =>{
     // Insert the dummy data and return it
     // so we can log it in the next .then
-    return Tickets.insertMany(ticketData);
+    return User.create({email: 'Dummyemail@yahoo.com', name: 'Tom From Myspace', phone: 4202201234})
+    .then((user) =>
+    Tickets.map((ticket) => ({...ticekts, owner: user._id}))
+    )
+    .then((tickets) => Tickets.insertMany(tickets))
   })
   // If the insert was successful, we'll see the
   // results in the terminal
