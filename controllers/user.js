@@ -3,18 +3,18 @@ const router = express.Router()
 const User = require('../models/user-model')
 
 // all users route
-router.get('/tickets/users', (req,res) =>{
+router.get('/tickets/user', (req,res) =>{
     User.find({})
-    .then((users) =>{
-        res.json(users)
+    .then((user) =>{
+        res.json(user)
     })
-
+    .catch(console.log(error))
 })
 
 // get usr by id route
-router.get('/tickets/users/:id', (req,res) =>{
+router.get('/tickets/user/:id', (req,res) =>{
     var id = req.params.id
-    User.findOne({_id : id})
+    User.findById(id)
     .then(userId =>{
         res.json(userId)
     })

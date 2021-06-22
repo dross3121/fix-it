@@ -52,9 +52,10 @@ app.listen(app.get("port"), () => {
 // TODOs
 // [x] finsh put and delete route
 // [X] connect user and tickets in database
-// [] re-factor routes
+// [X] re-factor routes
+// [X] fix heroku 
 // [] user login/ authentication
+// passpor.js sessios docs
 // [] rendering all of a users tickets based on id
 // [] flash message for when picture is to large
 // [] style.css or bootstrap
-// [X] fix heroku 

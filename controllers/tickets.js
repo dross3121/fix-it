@@ -9,18 +9,22 @@ const User = require('../models/user-model')
 
 
 // stroage path for uploaded photos
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-});
-const upload = multer({ storage: storage,
-    limits: {
-        fileSize: 1024 * 1024 * 5
-    } });
+const storage = multer.memoryStorage()
+const  filename = (req, file, cb) => {
+        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+            cb(null, true)
+        } else {
+            cb(null, false)
+        }
+      };
+const upload = multer({
+        storage: storage,
+        limits: {
+            fileSize: 1024 * 1024 * 5
+        },
+        filename : filename
+      })
+      
     
 // [X] index route to show all tickets
 router.get('/tickets/', (req, res) => {
@@ -45,8 +49,8 @@ router.post('/tickets/', upload.single('image'), (req, res, next) => {
         desc: req.body.desc,
         offer: req.body.offer,
         img: {
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-            contentType: 'image/png'
+            data: req.file.buffer,
+            contentType: req.file.mimetype
         }
     }
     Tickets.create(newTicket)
@@ -61,7 +65,7 @@ router.post('/tickets/', upload.single('image'), (req, res, next) => {
 router.get('/tickets/:id', (req,res) =>{
     let id = req.params.id
     Tickets.findById(id)
-    .populate('owner')
+    .populate('users')
     .then((ticket) =>{
        res.render('show', {ticket : ticket})
     })
