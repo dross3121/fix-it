@@ -93,14 +93,15 @@ router.put('/tickets/:id', upload.single('image'),(req,res, next) =>{
             title: req.body.title,
             desc: req.body.desc,
             offer: req.body.offer,
-            img: filename = {data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-                contentType: 'image/png'}
+            img: {
+                data: req.file.buffer,
+                contentType: req.file.mimetype
+            }
         },
         {new : true}
         )
         .then((ticket) =>{
-            console.log(ticket)
-       res.render('show', {ticket : ticket})
+        res.redirect('/tickets/')
         })
     .catch(console.error)
 })

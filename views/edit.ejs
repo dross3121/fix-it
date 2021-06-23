@@ -4,31 +4,32 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<title>Document</title>
 </head>
 <body>
 	<div>
 		<form action="/tickets/<%= ticket._id %>/?_method=put"  method="POST" enctype="multipart/form-data">
-			<div>
-			<strong><label for="title">Ticket name: </label></strong>	
-				<input type="text" id="title" name="title" placeholder="Ticket name"
+			<div class="input-group input-group-lg mb-3">
+				<span class="input-group-text" >Username :</span>
+				<input type="text" id="title" name="title" class="form-control" 
 					 title="title" >
 			</div>
-			<div>
-				<strong><label for="offer">Payment offer: </label></strong>	
-					<input type="text" id="offer" name="offer" placeholder="Payment offer">
-				</div>
-			<div>
-			<strong><label for="desc">Update description: </label></strong>	
-				<textarea id="desc" name="desc" rows="1"
-						placeholder="Description">
+			<div class="input-group input-group-lg mb-3">
+				<span class="input-group-text" >Update description :</span>
+				<textarea id="desc" name="desc" rows="1" class="form-control">
 				</textarea>
 			</div>
-			<div>
-			<strong><label for="image">Add photo: </label></strong>	
-				<input type="file" id="image"
-					name="image">
+			<div class="input-group input-group-lg mb-3">
+				<span class="input-group-text">Ticket offer :</span>
+				<input type="text" id="offer" name="offer" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"placeholder="$100.00">
 			</div>
+			<div>
+				<div class="input-group input-group-lg mb-3">
+					<label  for="formFile" class="form-label" for="image"></label>	
+					<input type="file" class="form-control" id="formFile" id="image"
+						name="image">
+				</div>
 			<form>
 				<button type="submit">Submit</button>
 			</form>
@@ -46,7 +47,7 @@
 					<%= ticket.img.data.toString('base64') %>">
 				<div>
 					<p>Description: <%= ticket.desc %></p>
-					<p>Ticket offer: <%= ticket.offer %></p>
+					<p>Ticket offer: <%= "$" + ticket.offer + ".00" %></p>
 				</div>
 			</div>
 		</div>
@@ -55,6 +56,7 @@
 	<form action="/tickets/">
 		<input type="submit" value="Cancel" />
 	</form>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>
 

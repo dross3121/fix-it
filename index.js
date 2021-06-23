@@ -55,7 +55,8 @@ app.listen(app.get("port"), () => {
 // [X] re-factor routes
 // [X] fix heroku 
 // [] user login/ authentication
-// passpor.js sessios docs
 // [] rendering all of a users tickets based on id
+// passport.js sessios docs
 // [] flash message for when picture is to large
 // [] style.css or bootstrap
+// [] have ticket data display inline
