@@ -49,7 +49,9 @@ passport.deserializeUser(function(obj, cb) {
 });
 
 /*  Google AUTH  */
- 
+
+// Todos
+//  hide this key and import refrence to it
 const GOOGLE_CLIENT_ID = '1062898417984-sjcm6c58j6msvru4kgc4f8gpe2h2ajai.apps.googleusercontent.com';
 const GOOGLE_CLIENT_SECRET = 'HfbGtiPOUvz4M18i-g3lISHx';
 passport.use(new GoogleStrategy({
@@ -115,6 +117,7 @@ app.listen(app.get("port"), () => {
 // [X] re-factor routes
 // [X] fix heroku 
 // [] user login/ authentication
+//  [] create nav bar
 // [] rendering all of a users tickets based on id
 // [] passport.js sessios docs
 // [] flash message for when picture is to large
