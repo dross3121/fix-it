@@ -25,7 +25,7 @@ const upload = multer({
         filename : filename
       })
       
-    
+
 // [X] index route to show all tickets
 router.get('/tickets/', (req, res) => {
         Tickets.find({})
