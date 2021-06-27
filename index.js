@@ -72,9 +72,9 @@ app.listen(app.get("port"), () => {
 // [X] re-factor routes
 // [X] fix heroku 
 // [] user login/ authentication
-//  [] create nav bar
+// [] update edit route 
+// [] create nav bar to search ticket by id
 // [] rendering all of a users tickets based on id
 // [] passport.js sessios docs
-// [] flash message for when picture is to large
-// [] style.css or bootstrap
-// [] have ticket data display inline
+// [X] style.css or bootstrap
+// [x] have ticket data display inline

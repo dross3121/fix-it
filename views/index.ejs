@@ -1,34 +1,39 @@
-!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <%- include('../partials/head'); %>
 </head>
-<body class="container-fluid">
+<body class="container">
 <main>
-    <div class="jumbotron">
-      <h1>Welcome to ExpressTix</h1>
-
-      <ul>
-		<% tickets.forEach(function(ticket) { %>
-			<div>
-				<div class="container-fluid">
-					<li>Username: <%= ticket.title %></li>
-					<img  
-					src="data:image/<%= ticket.img.contentType %>;base64, 
-					<%= ticket.img.data.toString('base64') %>">
-					<li>
-						Description: <%= ticket.desc %>
-						Ticket offer: <%= "$" + ticket.offer + ".00" %>
-						Ticket id: <%= ticket.id %> 
-					</li>
-				</div>
-			</div>
-		<% }) %>
-	</ul>
+	<h1>Express Tix</h1>
+	<hr>
+	<% tickets.forEach(function(ticket) { %>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="jumbotron" >
+		<img  
+				src="data:image/<%= ticket.img.contentType %>;base64, 
+				<%= ticket.img.data.toString('base64') %>">
     </div>
-  </main>
-  
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h3 >Customer Info</h3>
+      <hr>
+      <h5>Username: </h5><p><%= ticket.title %></p>
+      <h5>Description:</h5> <p><%= ticket.desc %></p>
+      <h5>Tix offer:</h5> <p><%= "$" + ticket.offer + ".00" %></p>
+      <h5>Tix id:</h5> <p><%= ticket.id %></p>
+
+    </div>
+  </div>
+</div>
+</main>
+<% }) %>
 </body>
 </html>
+
+
 
 
