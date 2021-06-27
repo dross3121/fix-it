@@ -11,7 +11,7 @@ Tickets.deleteMany({})
     // so we can log it in the next .then
     return User.create({email: 'Dummyemail@yahoo.com', name: 'Tom From Myspace', phone: 4202201234})
     .then((user) =>
-    Tickets.map((ticket) => ({...ticekts, owner: user._id}))
+    Tickets.map((ticket) => ({...tickets, owner: user._id}))
     )
     .then((tickets) => Tickets.insertMany(tickets))
   })

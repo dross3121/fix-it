@@ -1,24 +1,21 @@
 [
     { 
         "name" : "Bonapart Ross",
-        "email" : "googllygoogle@gooogle.com",
-        "phone" : 410000000
+        "password" : "goodpassword"
 
     },
     { 
         "name" : "Bonapart Ross",
-        "email" : "googllygoogle@gooogle.com",
-        "phone" : 410000000
+        "password" : "goodpassword"
 
     },
     { 
         "name" : "Bonapart Ross",
-        "email" : "googllygoogle@gooogle.com",
-        "phone" : 410000000
+        "password" : "goodpassword"
     },
     { 
         "name" : "Bonapart Ross",
-        "email" : "googllygoogle@gooogle.com",
-        "phone" : 410000000
+        "password" : "goodpassword"
+        
     }
 ]

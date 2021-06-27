@@ -15,11 +15,12 @@
 	<div>
 		<% tickets.forEach(function(ticket) { %>
 			<div>
-				<div>
+				<div class="container-fluid">
 					<h2>Username: <%= ticket.title %></h2>
-					<img  src="data:image/<%= ticket.img.contentType %>;base64, 
+					<img  
+					src="data:image/<%= ticket.img.contentType %>;base64, 
 					<%= ticket.img.data.toString('base64') %>">
-					<div>
+					<div >
 						<p>Description: <%= ticket.desc %></p>
 						<p>Ticket offer: <%= "$" + ticket.offer + ".00" %></p>
 					</div>

@@ -8,6 +8,7 @@ const Tickets = require('../models/tickets-model')
 const User = require('../models/user-model')
 
 
+
 // stroage path for uploaded photos
 const storage = multer.memoryStorage()
 const  filename = (req, file, cb) => {
@@ -31,12 +32,11 @@ router.get('/tickets/', (req, res) => {
         Tickets.find({})
         .populate('owner')
         .then((tickets) =>{
-            console.log(tickets)
             res.render('index', {tickets : tickets})
         })
         .catch(console.error);
     });
-
+// restrict access based on user login
 
 
 // add /new route for this form to create new tickets 

@@ -2,6 +2,21 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user-model')
 
+
+
+// user sign in page
+router.get('/signin', (req, res, next) => {
+    res.render('signin');
+  });
+router.post('/signin', (req, res, next) =>{
+  passport.authenticate('local', {
+      successRedirect: '/tickets',
+      failureRedirect: '/signin'
+  })
+  (req, res, next);
+  });
+
+  
 // all users route
 router.get('/tickets/user', (req,res) =>{
     User.find({})
