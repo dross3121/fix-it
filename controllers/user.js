@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user-model')
-
+const passport = require('passport')
 
 
 // user sign in page
@@ -15,6 +15,28 @@ router.post('/signin', (req, res, next) =>{
   })
   (req, res, next);
   });
+
+router.get('/registration', (req,res) =>{
+      res.render('registration')
+})
+
+router.get('/success', (req,res) =>{
+    res.render('success')
+})  
+
+router.post('/registration', (req,res, next) =>{
+    let newUser = {
+        name: req.body.name,
+        password: req.body.password 
+    }
+    User.create(newUser)
+    .then(user => {
+        console.log(user)
+        res.redirect('/success')
+    })
+    .catch(console.error);
+});
+
 
   
 // all users route
