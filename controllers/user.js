@@ -8,18 +8,26 @@ const passport = require('passport')
 router.get('/signin', (req, res, next) => {
     res.render('signin');
   });
-router.post('/signin', (req, res, next) =>{
-  passport.authenticate('local', {
-      successRedirect: '/tickets',
-      failureRedirect: '/signin'
-  })
-  (req, res, next);
+// router.post('/signin', (req, res, next) =>{
+//   passport.authenticate('local', {
+//       successRedirect: '/success',
+//       failureRedirect: '/signin' 
+//   })
+//   (req, res, next);
+//   });
+  router.post('/signin',
+  passport.authenticate('local'),
+  function(req, res, next) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.redirect('/tickets/' + req.user.name);
+    // console.log(req.user.name)
   });
 
-router.get('/registration', (req,res) =>{
+router.get('/registration',  (req,res) =>{
       res.render('registration')
 })
-
+// success log route 
 router.get('/success', (req,res) =>{
     res.render('success')
 })  

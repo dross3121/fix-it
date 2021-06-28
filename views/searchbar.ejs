@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+<main>
+	<h1>Express Tix</h1>
+	<hr>
+	<% if (ticket) { %>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="jumbotron" >
+		<img  
+				src="data:image/<%= ticket.img.contentType %>;base64, 
+				<%= ticket.img.data.toString('base64') %>">
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h3 >Customer Info</h3>
+      <hr>
+      <h5>Username: </h5><p><%= ticket.title %></p>
+      <h5>Description:</h5> <p><%= ticket.desc %></p>
+      <h5>Tix offer:</h5> <p><%= "$" + ticket.offer + ".00" %></p>
+      <h5>Tix id:</h5> <p><%= ticket._id %></p>
+    </div>
+  </div>
+</div>
+</main>
+<% } %>
+</body>
+</html>
+
+
+
+

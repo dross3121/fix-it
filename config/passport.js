@@ -15,15 +15,17 @@ module.exports = (passport) => {
       });
     passport.use(new  LocalStrategy({usernameField: "name"}, 
     (name, password, done) =>{
+        console.log(name)
+        console.log(password)
         User.findOne({name}, (err, data) => {
             if(err) throw err;
             if(!data){
-                return done(null, false)
+                return done(null, false, { message: 'Incorrect Username.' })
             }
             bcrypt.compare(password, data.password, (err, match) =>{
                 if(err) throw err;
                 if (!match){
-                    return done(null, false)
+                    return done(null, false, { message: 'Incorrect password.' })
                 }
                 if (match) {
                     done(null, data)

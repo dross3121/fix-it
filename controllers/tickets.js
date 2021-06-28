@@ -1,4 +1,5 @@
 const express = require('express')
+const passport = require('passport')
 const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
@@ -28,7 +29,7 @@ const upload = multer({
       
 
 // [X] index route to show all tickets
-router.get('/tickets/', (req, res) => {
+router.get('/tickets/', passport.authenticate('local'),(req, res) => {
         Tickets.find({})
         .populate('owner')
         .then((tickets) =>{
@@ -36,7 +37,7 @@ router.get('/tickets/', (req, res) => {
         })
         .catch(console.error);
     });
-// restrict access based on user login
+
 
 
 // add /new route for this form to create new tickets 
@@ -115,6 +116,14 @@ router.delete('/tickets/:id', (req,res) =>{
         res.redirect('/tickets/')
     })
 })
+// search bar route
+router.get('/show', (req,res)=>{
+    console.log(req.query)
+    let id = req.query.ticket
+    Tickets.findById(id )
+    .then((ticket) =>{
+       res.render('searchbar', {ticket : ticket})
+})})
 
 router.get('/about', (req,res) =>{
     res.render('about')
