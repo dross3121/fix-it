@@ -4,13 +4,12 @@ const User = require('../models/user-model')
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 
-
 // user sign in page
 router.get('/signin',(req, res, next) => {
     res.render('signin');
   });
 
-  
+
   router.post('/signin',
   passport.authenticate('local',{
           successRedirect: '/success',
