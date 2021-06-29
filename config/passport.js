@@ -18,16 +18,19 @@ module.exports = (passport) => {
         console.log(name)
         console.log(password)
         User.findOne({name}, (err, data) => {
+            console.log(data)
             if(err) throw err;
             if(!data){
                 return done(null, false, { message: 'Incorrect Username.' })
             }
             bcrypt.compare(password, data.password, (err, match) =>{
                 if(err) throw err;
-                if (!match){
+                if (!match){ 
+                    console.log("no matcch") 
                     return done(null, false, { message: 'Incorrect password.' })
                 }
                 if (match) {
+                    console.log("Bueno Dias") 
                     done(null, data)
                 }
             })

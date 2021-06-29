@@ -29,7 +29,7 @@ const upload = multer({
       
 
 // [X] index route to show all tickets
-router.get('/tickets/', passport.authenticate('local'),(req, res) => {
+router.get('/tickets/',(req, res) => {
         Tickets.find({})
         .populate('owner')
         .then((tickets) =>{

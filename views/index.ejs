@@ -3,11 +3,12 @@
 <head>
   <%- include('../partials/head'); %>
 </head>
-<body class="container">
+<body class="container-fluid">
 <main>
 	<h1>Express Tix</h1>
-	<hr>
+
 	<% tickets.forEach(function(ticket) { %>
+		<hr>
 <div class="row">
   <div class="col-sm-8">
     <div class="jumbotron" >

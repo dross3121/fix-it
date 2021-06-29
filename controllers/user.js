@@ -1,49 +1,48 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user-model')
-const passport = require('passport')
+const passport = require('passport');
+const bcrypt = require('bcrypt');
 
 
 // user sign in page
-router.get('/signin', (req, res, next) => {
+router.get('/signin',(req, res, next) => {
     res.render('signin');
   });
-// router.post('/signin', (req, res, next) =>{
-//   passport.authenticate('local', {
-//       successRedirect: '/success',
-//       failureRedirect: '/signin' 
-//   })
-//   (req, res, next);
-//   });
+
+  
   router.post('/signin',
-  passport.authenticate('local'),
-  function(req, res, next) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect('/tickets/' + req.user.name);
-    // console.log(req.user.name)
-  });
+  passport.authenticate('local',{
+          successRedirect: '/success',
+          failureRedirect: '/signin' 
+}))
+
 
 router.get('/registration',  (req,res) =>{
       res.render('registration')
 })
+
 // success log route 
 router.get('/success', (req,res) =>{
     res.render('success')
 })  
 
 router.post('/registration', (req,res, next) =>{
-    let newUser = {
-        name: req.body.name,
-        password: req.body.password 
-    }
-    User.create(newUser)
-    .then(user => {
-        console.log(user)
-        res.redirect('/success')
+    bcrypt.hash (req.body.password, 10,(err, hash) =>{
+        let newUser = {
+            name: req.body.name,
+            password: hash
+        }
+        User.create(newUser)
+        .then(user => {
+            console.log(user)
+            res.redirect('/success')
+        })
+        .catch(console.error);
+
+        })
     })
-    .catch(console.error);
-});
+
 
 
   
