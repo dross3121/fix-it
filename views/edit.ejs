@@ -9,24 +9,24 @@
 	<title>Edit your ticket</title>
 </head>
 <body>
-	<div>
+	<div class="container">
 		<form action="/tickets/<%= ticket._id %>/?_method=put"  method="POST" enctype="multipart/form-data">
-			<div class="input-group input-group-lg mb-3">
+			<div class="container" class="input-group input-group-lg mb-3">
 				<span class="input-group-text" >Username :</span>
 				<input type="text" id="title" name="title" class="form-control" 
 					 title="title" >
 			</div>
-			<div class="input-group input-group-lg mb-3">
+			<div class="container" class="input-group input-group-lg mb-3">
 				<span class="input-group-text" >Update description :</span>
-				<textarea id="desc" name="desc" rows="1" class="form-control">
+				<textarea aria-label="With textarea" id="desc" name="desc" rows="1" class="form-control">
 				</textarea>
 			</div>
-			<div class="input-group input-group-lg mb-3">
+			<div class="container" class="input-group input-group-lg mb-3">
 				<span class="input-group-text">Ticket offer :</span>
 				<input type="text" id="offer" name="offer" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"placeholder="$100.00">
 			</div>
 			<div>
-				<div class="input-group input-group-lg mb-3">
+				<div class="container" class="input-group input-group-lg mb-3">
 					<label  for="formFile" class="form-label" for="image"></label>	
 					<input type="file" class="form-control" id="formFile" id="image"
 						name="image">
@@ -35,7 +35,7 @@
 				<button  class="btn btn-primary" type="submit">Submit</button>
 			</form>
 			<form action="/tickets/<%= ticket._id %>/?_method=DELETE" method="POST" enctype="multipart/form-data">
-				<input type="submit" value="DELETE" />
+				<input class="btn btn-primary" type="submit" value="Delete" />
 			</form>
 		</form>
 	</div>
@@ -43,12 +43,13 @@
 		<% if (ticket) { %>
 		<div>
 			<div>
-				<h2>Issue: <%= ticket.title %></h2>
+				<h2>Username: <%= ticket.title %></h2>
 				<img  src="data:image/<%= ticket.img.contentType %>;base64, 
 					<%= ticket.img.data.toString('base64') %>">
 				<div>
 					<p>Description: <%= ticket.desc %></p>
 					<p>Ticket offer: <%= "$" + ticket.offer + ".00" %></p>
+					<p>Tix id: <%= ticket._id %></p>
 				</div>
 			</div>
 		</div>

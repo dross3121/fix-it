@@ -59,7 +59,7 @@ router.post('/tickets/', upload.single('image'), (req, res, next) => {
     }
     Tickets.create(newTicket)
     .then(ticket => {
-        console.log(ticket)
+        // console.log(ticket)
         res.redirect('/tickets')
     })
     .catch(console.error);
@@ -80,7 +80,7 @@ router.get('/tickets/:id', (req,res) =>{
 
 router.get('/tickets/:id/edit', (req,res) =>{
     let id = req.params.id
-    console.log(id)
+    // console.log(id)
     Tickets.findById(id)
     .then((ticket) =>{
        res.render('edit', {ticket : ticket})
@@ -115,7 +115,7 @@ router.delete('/tickets/:id', (req,res) =>{
     let id = req.params.id
     Tickets.findOneAndRemove({_id : id})
     .then(ticket =>{
-        console.log(ticket, `This Ticket was deleted ${ticket} `)
+        // console.log(ticket, `This Ticket was deleted ${ticket} `)
         res.redirect('/tickets/')
     })
 })

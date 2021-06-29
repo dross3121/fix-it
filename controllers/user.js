@@ -34,7 +34,6 @@ router.post('/registration', (req,res, next) =>{
         }
         User.create(newUser)
         .then(user => {
-            console.log(user)
             res.redirect('/success')
         })
         .catch(console.error);
