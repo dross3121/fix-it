@@ -9,6 +9,9 @@ const Tickets = require('../models/tickets-model')
 const User = require('../models/user-model')
 
 
+router.get('/', (req,res) =>{
+    res.render('signin')
+})
 
 // stroage path for uploaded photos
 const storage = multer.memoryStorage()
